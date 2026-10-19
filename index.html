@@ -1,0 +1,515 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Irum | Creative Web Developer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --purple:#a78bfa;
+  --deep:#8060d8;
+  --bg:#faf8ff;
+  --card:#ffffff;
+  --text:#241c31;
+  --muted:#756d82;
+  --border:#e8e0f5;
+  --soft:#f0eaff;
+}
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:Poppins,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;transition:.3s;overflow-x:hidden}
+body.dark{--bg:#171321;--card:#241d32;--text:#faf7ff;--muted:#c2b8d4;--border:#40344f;--soft:#302440}
+a{text-decoration:none;color:inherit}
+button,input,textarea{font:inherit}
+img{max-width:100%;display:block}
+.container{width:min(1120px,90%);margin:auto}
+section{padding:85px 0;scroll-margin-top:85px}
+.heading{text-align:center;max-width:720px;margin:0 auto 42px}
+.heading small{color:var(--deep);font-weight:700;letter-spacing:2px;text-transform:uppercase}
+body.dark .heading small{color:var(--purple)}
+.heading h2{font-size:clamp(29px,4vw,42px);line-height:1.3;margin:8px 0}
+.heading p,.muted{color:var(--muted)}
+.highlight{color:var(--deep)}
+body.dark .highlight{color:var(--purple)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 21px;border:2px solid var(--purple);border-radius:12px;font-size:13px;font-weight:700;transition:.25s;cursor:pointer}
+.btn.primary{background:var(--purple);color:#241c31}
+.btn:hover{transform:translateY(-4px);box-shadow:0 10px 24px #a78bfa33}
+.btn.outline:hover{background:var(--purple);color:#241c31}
+
+/* NAVIGATION */
+header{position:sticky;top:0;z-index:1000;background:var(--card);border-bottom:1px solid var(--border)}
+nav{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{font-size:27px;font-weight:800;letter-spacing:-1px}
+.logo span{color:var(--deep)}
+.nav-links{list-style:none;display:flex;align-items:center;gap:18px}
+.nav-links a{font-size:12px;color:var(--muted);font-weight:600}
+.nav-links a:hover{color:var(--deep)}
+.nav-actions{display:flex;gap:8px}
+.icon-btn{border:1px solid var(--border);border-radius:10px;padding:8px 11px;background:var(--card);color:var(--text);cursor:pointer}
+#menuBtn{display:none}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;padding:85px 0;background:radial-gradient(circle at 10% 10%,#c4b5fd44,transparent 30%),radial-gradient(circle at 90% 80%,#f0abfc33,transparent 28%)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;position:relative;z-index:1}
+.pill{display:inline-block;background:var(--soft);border:1px solid var(--border);color:var(--deep);padding:7px 14px;border-radius:30px;font-size:12px;font-weight:700;margin-bottom:20px}
+body.dark .pill{color:var(--purple)}
+.hero h1{font-size:clamp(40px,6vw,65px);line-height:1.13;letter-spacing:-2px;margin-bottom:16px}
+.hero h2{font-size:22px;margin-bottom:16px}
+#typing{color:var(--deep);border-right:2px solid var(--purple);padding-right:4px}
+body.dark #typing{color:var(--purple)}
+.hero-copy{color:var(--muted);max-width:550px;margin-bottom:25px}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.hero-tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:24px}
+.hero-tags span{font-size:11px;padding:7px 10px;border-radius:8px;background:var(--card);border:1px solid var(--border)}
+.hero-visual{position:relative;max-width:420px;margin:auto}
+.hero-photo{height:420px;width:100%;object-fit:cover;border:8px solid var(--card);border-radius:28px;box-shadow:0 20px 50px #5b438522}
+.float-card{position:absolute;padding:13px 16px;border:1px solid var(--border);background:var(--card);border-radius:14px;box-shadow:0 10px 35px #5b438522;font-size:12px;font-weight:700;animation:float 5s ease-in-out infinite}
+.float-card small{display:block;color:var(--muted);font-weight:400}
+.float-one{left:-25px;bottom:30px}
+.float-two{right:-20px;top:28px;animation-delay:-2s}
+.sparkle{position:absolute;font-size:27px;color:var(--deep);animation:float 4s infinite}
+.sparkle.one{top:12%;left:4%}.sparkle.two{right:4%;bottom:15%;animation-delay:-1s}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-15px) rotate(5deg)}}
+
+/* STATS */
+.stats{padding:0 0 35px}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.stat{padding:23px 10px;text-align:center;background:var(--card);border:1px solid var(--border);border-radius:17px;box-shadow:0 8px 25px #5b43820b}
+.stat strong{display:block;font-size:30px;color:var(--deep)}
+body.dark .stat strong{color:var(--purple)}
+.stat span{font-size:12px;color:var(--muted)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:50px}
+.about-photo{height:420px;width:100%;object-fit:cover;border-radius:25px;box-shadow:0 15px 35px #5b438522}
+.about-copy h3{font-size:28px;line-height:1.4;margin:10px 0 15px}
+.about-copy p{color:var(--muted);font-size:14px;margin-bottom:13px}
+.check-list{list-style:none;display:grid;gap:9px;margin:20px 0 25px}
+.check-list li:before{content:"✦";color:var(--deep);margin-right:10px}
+
+/* SKILLS */
+.skills-section,.projects-section,.achievements{background:var(--soft)}
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.skill{padding:23px;background:var(--card);border:1px solid var(--border);border-radius:16px}
+.skill-top{display:flex;justify-content:space-between;gap:10px;font-size:14px;font-weight:700;margin-bottom:12px}
+.skill-top span:last-child{color:var(--deep)}
+body.dark .skill-top span:last-child{color:var(--purple)}
+.track{height:9px;border-radius:20px;background:var(--border);overflow:hidden}
+.fill{height:100%;width:0;border-radius:20px;background:linear-gradient(90deg,#c4b5fd,#8b5cf6);transition:width 1.4s ease}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.service{padding:27px 23px;background:var(--card);border:1px solid var(--border);border-radius:19px;transition:.25s}
+.service:hover{transform:translateY(-7px);box-shadow:0 15px 35px #5b43821c;border-color:var(--purple)}
+.service-icon{width:53px;height:53px;display:grid;place-items:center;border-radius:15px;background:var(--soft);font-size:25px;margin-bottom:16px}
+.service h3{font-size:18px;margin-bottom:8px}
+.service p{font-size:13px;color:var(--muted)}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:23px}
+.project{background:var(--card);border:1px solid var(--border);border-radius:19px;overflow:hidden;transition:.3s}
+.project:hover{transform:translateY(-8px);box-shadow:0 18px 40px #5b438222}
+.project-image-wrap{overflow:hidden}
+.project-image{width:100%;height:205px;object-fit:cover;transition:transform .45s;background:var(--soft)}
+.project:hover .project-image{transform:scale(1.06)}
+.project-content{padding:21px}
+.project-number{color:var(--deep);font-size:11px;font-weight:800;letter-spacing:1.5px}
+body.dark .project-number{color:var(--purple)}
+.project h3{font-size:18px;margin:7px 0 9px}
+.project p{font-size:12px;color:var(--muted);min-height:65px;margin-bottom:14px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:17px}
+.tags span{font-size:10px;font-weight:700;padding:5px 8px;border-radius:7px;background:var(--soft)}
+.project-link{font-size:12px;font-weight:800;color:var(--deep)}
+body.dark .project-link{color:var(--purple)}
+.project-link:hover{text-decoration:underline}
+
+/* JOURNEY */
+.journey-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.journey-card{padding:28px;border:1px solid var(--border);background:var(--card);border-radius:19px}
+.journey-card h3{font-size:21px;margin-bottom:20px}
+.journey-item{border-left:3px solid var(--purple);padding:0 0 20px 17px;margin-left:5px}
+.journey-item:last-child{padding-bottom:0}
+.journey-item h4{font-size:14px;margin-bottom:5px}
+.journey-item p{font-size:12px;color:var(--muted)}
+
+/* ACHIEVEMENTS */
+.achievement-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.achievement{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px 18px;text-align:center;transition:.25s}
+.achievement:hover{transform:translateY(-5px)}
+.achievement .emoji{font-size:32px;margin-bottom:10px}
+.achievement h3{font-size:16px;margin-bottom:7px}
+.achievement p{font-size:12px;color:var(--muted)}
+
+/* QUOTE */
+.quote-box{padding:52px 25px;text-align:center;border-radius:25px;background:linear-gradient(135deg,#e8ddff,#fff1fa);color:#241c31}
+.quote-mark{font-size:48px;color:#8060d8;line-height:1}
+.quote-box h2{font-size:clamp(24px,4vw,35px);line-height:1.4;max-width:760px;margin:14px auto}
+.quote-box p{color:#756d82}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:35px}
+.contact-info h3{font-size:25px;margin-bottom:12px}
+.contact-info>p{font-size:14px;color:var(--muted);margin-bottom:22px}
+.contact-item{display:flex;align-items:flex-start;gap:13px;margin:20px 0}
+.contact-icon{width:43px;height:43px;flex-shrink:0;display:grid;place-items:center;background:var(--soft);border-radius:12px}
+.contact-item h4{font-size:13px}
+.contact-item p{font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.contact-form{padding:27px;background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:0 10px 30px #5b438211}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:12px;font-weight:700;margin-bottom:7px}
+.form-group input,.form-group textarea{width:100%;padding:12px 13px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);outline:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--purple)}
+.form-group textarea{min-height:120px;resize:vertical}
+.contact-form .btn{width:100%}
+
+/* FOOTER */
+footer{padding:34px 0;background:#211a2d;color:#faf7ff;text-align:center}
+.footer-logo{font-size:25px;font-weight:800}
+.footer-logo span{color:#c4b5fd}
+footer p{font-size:12px;color:#c2b8d4}
+.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:16px 0}
+.footer-links a{font-size:12px;color:#e4dcf3}
+#topBtn{display:none;position:fixed;right:20px;bottom:20px;z-index:900;width:44px;height:44px;border:0;border-radius:13px;background:var(--purple);color:#211a2d;font-size:21px;cursor:pointer}
+#topBtn.show{display:block}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s,transform .65s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:980px){
+ .nav-links{gap:10px}.nav-links a{font-size:10px}
+ .projects-grid{grid-template-columns:repeat(2,1fr)}
+ .services-grid{grid-template-columns:repeat(2,1fr)}
+ .hero-grid,.about-grid{gap:28px}
+}
+@media(max-width:760px){
+ section{padding:65px 0}
+ nav{min-height:68px}
+ #menuBtn{display:block}
+ .nav-links{display:none;position:absolute;top:68px;left:0;right:0;padding:22px 5%;background:var(--card);border-bottom:1px solid var(--border);align-items:flex-start;flex-direction:column;gap:16px}
+ .nav-links.open{display:flex}.nav-links a{font-size:14px}
+ .hero{padding:60px 0}
+ .hero-grid,.about-grid,.journey-grid,.contact-grid{grid-template-columns:1fr}
+ .hero-copy-wrap{text-align:center}.hero-copy{margin-left:auto;margin-right:auto}
+ .hero-buttons,.hero-tags{justify-content:center}
+ .hero-visual{max-width:370px;margin-top:22px}
+ .hero-photo{height:350px}.float-one{left:-5px}
+ .about-photo{height:320px}
+ .stats-grid{gap:9px}.stat{padding:18px 6px}.stat strong{font-size:24px}.stat span{font-size:10px}
+ .skills-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+ .projects-grid,.services-grid,.achievement-grid{grid-template-columns:1fr}
+ .hero h1{letter-spacing:-1px}.hero-photo{height:300px}
+ .heading{margin-bottom:30px}.quote-box{padding:40px 18px}
+ .contact-form,.journey-card{padding:21px}
+ .btn{padding:11px 15px;font-size:12px}
+ .float-card{font-size:10px}.float-two{right:-5px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+ .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+<header>
+<nav class="container">
+  <a href="#home" class="logo">Irum<span>.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li><li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li><li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li><li><a href="#journey">Journey</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">🌙</button>
+    <button class="icon-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <span class="sparkle one">✦</span><span class="sparkle two">✧</span>
+  <div class="container hero-grid">
+    <div class="hero-copy-wrap">
+      <span class="pill">✦ Welcome to my creative space</span>
+      <h1>Hi, I'm Irum.<br>A Future <span class="highlight">Web Developer</span></h1>
+      <h2>I am a <span id="typing">Creative Thinker</span></h2>
+      <p class="hero-copy">I love turning creative ideas into beautiful websites. I am learning web development step by step and building projects that help me grow, explore new ideas, and improve my coding skills every day.</p>
+      <div class="hero-buttons">
+        <a class="btn primary" href="#projects">Explore My Work ↗</a>
+        <a class="btn outline" href="#contact">Let's Connect ♡</a>
+      </div>
+      <div class="hero-tags"><span>🎨 Creative Design</span><span>💻 Web Development</span><span>🌱 Always Learning</span></div>
+    </div>
+    <div class="hero-visual">
+      <img class="hero-photo" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=85" alt="Computer and creative workspace">
+      <div class="float-card float-one">💜 Learning every day<small>One project at a time</small></div>
+      <div class="float-card float-two">✨ Welcome!<small>Let's build something lovely</small></div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="container stats-grid">
+    <div class="stat"><strong class="counter" data-target="6">0</strong><span>Featured Projects</span></div>
+    <div class="stat"><strong class="counter" data-target="3">0</strong><span>Core Technologies</span></div>
+    <div class="stat"><strong>∞</strong><span>Ideas to Explore</span></div>
+  </div>
+</div>
+
+<section id="about">
+<div class="container about-grid">
+  <div class="reveal"><img class="about-photo" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85" alt="Creative digital learning workspace"></div>
+  <div class="about-copy reveal">
+    <div class="heading" style="text-align:left;margin:0"><small>About Me</small></div>
+    <h3>Creative mind, curious heart, and a love for <span class="highlight">coding.</span></h3>
+    <p>Hi! I'm Irum, an aspiring web developer who enjoys learning how websites work and bringing ideas to life through code.</p>
+    <p>My journey is about more than writing code. I want to understand how design, structure, and interactivity come together to create a smooth experience for visitors.</p>
+    <p>Every project teaches me something new. I enjoy experimenting, solving small problems, and improving my work with every new challenge.</p>
+    <ul class="check-list">
+      <li>Learning HTML, CSS, and JavaScript</li>
+      <li>Practising with real mini projects</li>
+      <li>Exploring responsive and user-friendly designs</li>
+      <li>Building confidence through consistent practice</li>
+    </ul>
+    <a class="btn primary" href="#journey">Discover My Journey ✦</a>
+  </div>
+</div>
+</section>
+
+<section class="skills-section" id="skills">
+<div class="container">
+  <div class="heading reveal"><small>What I'm Learning</small><h2>My Creative <span class="highlight">Toolbox</span></h2><p>These are the core technologies I'm practising as I build my foundation in web development.</p></div>
+  <div class="skills-grid">
+    <div class="skill reveal"><div class="skill-top"><span>HTML</span><span>Learning</span></div><div class="track"><div class="fill" data-width="82%"></div></div></div>
+    <div class="skill reveal"><div class="skill-top"><span>CSS</span><span>Learning</span></div><div class="track"><div class="fill" data-width="72%"></div></div></div>
+    <div class="skill reveal"><div class="skill-top"><span>JavaScript</span><span>Practising</span></div><div class="track"><div class="fill" data-width="48%"></div></div></div>
+    <div class="skill reveal"><div class="skill-top"><span>Responsive Design</span><span>Improving</span></div><div class="track"><div class="fill" data-width="62%"></div></div></div>
+  </div>
+</div>
+</section>
+
+<section id="services">
+<div class="container">
+  <div class="heading reveal"><small>What I Enjoy</small><h2>My Areas of <span class="highlight">Interest</span></h2><p>As I continue learning, I'm exploring different parts of website creation and design.</p></div>
+  <div class="services-grid">
+    <article class="service reveal"><div class="service-icon">🎨</div><h3>Creative Web Design</h3><p>Choosing colours, layouts, spacing, and visual details to make a website welcoming and easy to explore.</p></article>
+    <article class="service reveal"><div class="service-icon">🧩</div><h3>Front-End Development</h3><p>Using HTML, CSS, and JavaScript to build page structures, style content, and add interactive features.</p></article>
+    <article class="service reveal"><div class="service-icon">📱</div><h3>Responsive Layouts</h3><p>Practising designs that adapt to different screen sizes, from desktop computers to mobile phones.</p></article>
+  </div>
+</div>
+</section>
+
+<section class="projects-section" id="projects">
+<div class="container">
+  <div class="heading reveal"><small>My Portfolio</small><h2>Little Projects, <span class="highlight">Big Learning</span></h2><p>Every project is a new opportunity to practise, experiment, and turn an idea into something real. Open a live demo to explore my work.</p></div>
+  <div class="projects-grid">
+    <article class="project reveal">
+      <div class="project-image-wrap"><img class="project-image" src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=900&q=85" alt="Colourful theme park attractions and lights"></div>
+      <div class="project-content"><span class="project-number">PROJECT 01</span><h3>DreamLand Theme Park</h3><p>A fun theme park website concept designed to present attractions and create an exciting first impression for visitors.</p><div class="tags"><span>HTML</span><span>CSS</span><span>Design</span></div><a class="project-link" href="https://irumm8878-crypto.github.io/IRUM_WEBSITE/" target="_blank" rel="noopener noreferrer">View Live Project ↗</a></div>
+    </article>
+    <article class="project reveal">
+      <div class="project-image-wrap"><img class="project-image" src="https://images.unsplash.com/photo-1607082349566-187342175e2f?auto=format&fit=crop&w=900&q=85" alt="Online shopping packages"></div>
+      <div class="project-content"><span class="project-number">PROJECT 02</span><h3>Shopping Website</h3><p>A website project exploring how products, sections, and visual elements can be arranged into a clear browsing experience.</p><div class="tags"><span>HTML</span><span>CSS</span><span>Layout</span></div><a class="project-link" href="https://irumm8878-crypto.github.io/pppppp/" target="_blank" rel="noopener noreferrer">View Live Project ↗</a></div>
+    </article>
+    <article class="project reveal">
+      <div class="project-image-wrap"><img class="project-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85" alt="Laptop and coding workspace"></div>
+      <div class="project-content"><span class="project-number">PROJECT 03</span><h3>DOM: 8 JavaScript Exercises</h3><p>A JavaScript practice project focused on DOM interaction and exercises that help make web pages respond to user actions.</p><div class="tags"><span>JavaScript</span><span>DOM</span><span>HTML</span></div><a class="project-link" href="https://irumm8878-crypto.github.io/qqqq/" target="_blank" rel="noopener noreferrer">View Live Project ↗</a></div>
+    </article>
+    <article class="project reveal">
+      <div class="project-image-wrap"><img class="project-image" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=85" alt="Hair care and beauty products"></div>
+      <div class="project-content"><span class="project-number">PROJECT 04</span><h3>Hair Care Website</h3><p>A beauty-inspired web concept that presents hair-care ideas in a clean, visual, and easy-to-read format.</p><div class="tags"><span>HTML</span><span>CSS</span><span>Content</span></div><a class="project-link" href="https://radiant-pika-be886a.netlify.app/" target="_blank" rel="noopener noreferrer">View Live Project ↗</a></div>
+    </article>
+    <article class="project reveal">
+      <div class="project-image-wrap"><img class="project-image" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=900&q=85" alt="Perfume bottle and fragrance styling"></div>
+      <div class="project-content"><span class="project-number">PROJECT 05</span><h3>Perfume & Beauty Concept</h3><p>A product-focused design concept inspired by fragrance and beauty, with attention to imagery, presentation, and layout.</p><div class="tags"><span>Web Design</span><span>CSS</span><span>Visuals</span></div><a class="project-link" href="https://sprightly-bonbon-2c028b.netlify.app/" target="_blank" rel="noopener noreferrer">View Live Project ↗</a></div>
+    </article>
+    <article class="project reveal">
+      <div class="project-image-wrap"><img class="project-image" src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=900&q=85" alt="Minimal creative desk and workspace"></div>
+      <div class="project-content"><span class="project-number">PROJECT 06</span><h3>Creative Design Project</h3><p>A further web project in my growing portfolio, helping me practise page structure, visual consistency, and design choices.</p><div class="tags"><span>HTML</span><span>CSS</span><span>Practice</span></div><a class="project-link" href="https://verdant-malabi-e454c7.netlify.app/" target="_blank" rel="noopener noreferrer">View Live Project ↗</a></div>
+    </article>
+  </div>
+</div>
+</section>
+
+<section id="journey">
+<div class="container">
+  <div class="heading reveal"><small>My Progress</small><h2>The Learning <span class="highlight">Journey</span></h2><p>Becoming a developer is a process. I'm building my skills one lesson, one experiment, and one project at a time.</p></div>
+  <div class="journey-grid">
+    <div class="journey-card reveal"><h3>💻 What I'm Practising</h3>
+      <div class="journey-item"><h4>01. HTML Foundations</h4><p>Page structure, headings, paragraphs, images, links, lists, and forms.</p></div>
+      <div class="journey-item"><h4>02. CSS & Styling</h4><p>Colours, typography, spacing, cards, layouts, and responsive design.</p></div>
+      <div class="journey-item"><h4>03. JavaScript Basics</h4><p>Variables, functions, arrays, loops, events, and DOM manipulation.</p></div>
+      <div class="journey-item"><h4>04. Building Projects</h4><p>Applying what I learn to real pages and improving them through practice.</p></div>
+    </div>
+    <div class="journey-card reveal"><h3>🌱 My Developer Mindset</h3>
+      <div class="journey-item"><h4>Stay Curious</h4><p>Ask questions, explore examples, and keep learning how things work.</p></div>
+      <div class="journey-item"><h4>Learn by Doing</h4><p>Turn lessons into small projects instead of only reading about code.</p></div>
+      <div class="journey-item"><h4>Improve with Feedback</h4><p>Use feedback to spot opportunities and make each project better.</p></div>
+      <div class="journey-item"><h4>Keep Moving Forward</h4><p>Celebrate progress, learn from mistakes, and keep building confidence.</p></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="achievements" id="achievements">
+<div class="container">
+  <div class="heading reveal"><small>Small Wins Matter</small><h2>My <span class="highlight">Achievements</span></h2><p>I'm proud of the progress I make as I learn and build. These milestones represent effort, curiosity, and consistency.</p></div>
+  <div class="achievement-grid">
+    <article class="achievement reveal"><div class="emoji">🚀</div><h3>Projects Published</h3><p>Sharing my work online so it can be explored and improved.</p></article>
+    <article class="achievement reveal"><div class="emoji">🧠</div><h3>New Skills Learned</h3><p>Growing my understanding of web technologies through practice.</p></article>
+    <article class="achievement reveal"><div class="emoji">💜</div><h3>Creative Confidence</h3><p>Becoming more confident in turning ideas into digital experiences.</p></article>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <div class="quote-box reveal">
+    <div class="quote-mark">“</div>
+    <h2>Great things take time. Keep learning, keep creating, and trust your progress.</h2>
+    <p>One line of code at a time — I'm building my future. ✨</p>
+  </div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+  <div class="heading reveal"><small>Say Hello</small><h2>Let's <span class="highlight">Connect</span></h2><p>Have a question, a suggestion, or an idea? I'd love to hear from you.</p></div>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h3>Let's create something lovely 💌</h3>
+      <p>I'm always happy to learn from others, hear helpful feedback, and discover new ideas in web development.</p>
+      <div class="contact-item"><div class="contact-icon">📧</div><div><h4>Email</h4><p>YOUR_EMAIL@gmail.com</p></div></div>
+      <div class="contact-item"><div class="contact-icon">💻</div><div><h4>My Work</h4><p>Explore the live projects in my portfolio.</p></div></div>
+      <div class="contact-item"><div class="contact-icon">🌷</div><div><h4>Current Focus</h4><p>Learning, practising, and building better websites.</p></div></div>
+    </div>
+    <form class="contact-form reveal" id="contactForm">
+      <div class="form-group"><label for="name">Your Name</label><input id="name" name="name" placeholder="Enter your name" required></div>
+      <div class="form-group"><label for="email">Your Email</label><input id="email" name="email" type="email" placeholder="Enter your email" required></div>
+      <div class="form-group"><label for="subject">Subject</label><input id="subject" name="subject" placeholder="What would you like to discuss?" required></div>
+      <div class="form-group"><label for="message">Your Message</label><textarea id="message" name="message" placeholder="Write your message here..." required></textarea></div>
+      <button class="btn primary" type="submit">Prepare Email ✉</button>
+      <p class="muted" style="font-size:11px;margin-top:10px">This form opens your email app to send the message.</p>
+    </form>
+  </div>
+</div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo">Irum<span>.</span></div>
+    <p>Learning today. Creating tomorrow. Growing every day. 💜</p>
+    <div class="footer-links"><a href="#home">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div>
+    <p>© <span id="year"></span> Irum's Portfolio. Made with ♡ and curiosity.</p>
+  </div>
+</footer>
+<button id="topBtn" aria-label="Back to top">↑</button>
+
+<script>
+// Mobile menu
+const menuBtn=document.getElementById('menuBtn');
+const navLinks=document.getElementById('navLinks');
+menuBtn.addEventListener('click',()=>{
+  navLinks.classList.toggle('open');
+  menuBtn.textContent=navLinks.classList.contains('open')?'✕':'☰';
+});
+navLinks.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+  navLinks.classList.remove('open');
+  menuBtn.textContent='☰';
+}));
+
+// Dark and light theme
+const themeBtn=document.getElementById('themeBtn');
+themeBtn.addEventListener('click',()=>{
+  document.body.classList.toggle('dark');
+  themeBtn.textContent=document.body.classList.contains('dark')?'☀️':'🌙';
+});
+
+// Typing effect
+const words=['Creative Thinker','Future Developer','Problem Solver','Lifelong Learner'];
+const typing=document.getElementById('typing');
+let wordIndex=0,charIndex=0,deleting=false;
+function typeWords(){
+  const word=words[wordIndex];
+  typing.textContent=word.substring(0,charIndex);
+  if(!deleting&&charIndex<word.length){
+    charIndex++;
+    setTimeout(typeWords,90);
+  }else if(!deleting){
+    deleting=true;
+    setTimeout(typeWords,1100);
+  }else if(charIndex>0){
+    charIndex--;
+    setTimeout(typeWords,45);
+  }else{
+    deleting=false;
+    wordIndex=(wordIndex+1)%words.length;
+    setTimeout(typeWords,250);
+  }
+}
+typeWords();
+
+// Reveal elements and animate skill bars
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      entry.target.querySelectorAll('.fill').forEach(fill=>fill.style.width=fill.dataset.width);
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal,.skill').forEach(el=>observer.observe(el));
+
+// Animated number counters
+const counterObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+    const el=entry.target;
+    const target=Number(el.dataset.target);
+    let value=0;
+    const step=Math.max(1,Math.ceil(target/30));
+    const timer=setInterval(()=>{
+      value+=step;
+      if(value>=target){value=target;clearInterval(timer);}
+      el.textContent=value+'+';
+    },40);
+    counterObserver.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>counterObserver.observe(el));
+
+// Back to top
+const topBtn=document.getElementById('topBtn');
+window.addEventListener('scroll',()=>topBtn.classList.toggle('show',window.scrollY>400));
+topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// Footer year
+document.getElementById('year').textContent=new Date().getFullYear();
+
+// Contact form: opens email app (replace the placeholder first)
+document.getElementById('contactForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  const recipient='YOUR_EMAIL@gmail.com';
+  if(recipient==='YOUR_EMAIL@gmail.com'){
+    alert('Please replace YOUR_EMAIL@gmail.com with your real email address in the contact section and JavaScript.');
+    return;
+  }
+  const form=event.currentTarget;
+  const name=form.elements.name.value.trim();
+  const email=form.elements.email.value.trim();
+  const subject=form.elements.subject.value.trim();
+  const message=form.elements.message.value.trim();
+  const body=`Name: ${name}\nEmail: ${email}\n\n${message}`;
+  window.location.href=`mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});
+</script>
+</body>
+</html>
